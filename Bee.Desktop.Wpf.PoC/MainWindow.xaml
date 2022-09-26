@@ -1,0 +1,23 @@
+﻿<Window x:Class="Bee.Desktop.Wpf.PoC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bee.Desktop.Wpf.PoC"
+        xmlns:viewModels="clr-namespace:Bee.Desktop.Wpf.PoC.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="600">
+    <Window.DataContext>
+        <viewModels:EMailViewModel/>
+    </Window.DataContext>
+    <Window.Background>
+        <ImageBrush ImageSource="/20404276.jpg" Stretch="None"/>
+    </Window.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Frame Source="Email.xaml" />
+    </Grid>
+</Window>

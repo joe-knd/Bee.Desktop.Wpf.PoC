@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,22 +12,24 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
 {
     public class EMailViewModel : ObservableValidator
     {
-        private string emailAddress = string.Empty;
-        private bool canExecuteAuthorize = false;
+        private string? emailAddress = string.Empty;
         public IAsyncRelayCommand AuthorizeCommand { get; }
 
         public EMailViewModel()
         {
             AuthorizeCommand = new AsyncRelayCommand(Authorize, () => AuthorizeCanExecute());
+            this.ValidateAllProperties();
         }
 
-        public string EmailAddress
+        [Required]
+        [EmailAddress]
+        public string? EmailAddress
         {
             get => emailAddress;
             set
             {
                 SetProperty(ref emailAddress, value);
-                canExecuteAuthorize = value.Length > 0;
+                this.ValidateAllProperties();
                 AuthorizeCommand.NotifyCanExecuteChanged();
             }
         }
@@ -37,7 +40,7 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
 
         public bool AuthorizeCanExecute()
         {
-            return canExecuteAuthorize;
+            return !this.HasErrors;
         }
     }
 }

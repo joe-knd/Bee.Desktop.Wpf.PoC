@@ -33,6 +33,11 @@
             <GradientStop Color="#0b0b0b" Offset="0" />
         </LinearGradientBrush>
 
+        <LinearGradientBrush x:Key="ButtongradientHover" StartPoint="0.500023,0.999996" EndPoint="0.500023,4.37507e-006">
+            <GradientStop Color="#FFE59400" Offset="1" />
+            <GradientStop Color="#FF784D00" Offset="0" />
+        </LinearGradientBrush>
+        
         <LinearGradientBrush x:Key="ButtongradientDisabled" StartPoint="0.500023,0.999996" EndPoint="0.500023,4.37507e-006">
             <GradientStop Color="#665E5E5E" Offset="1" />
             <GradientStop Color="#660B0B0B" Offset="0" />
@@ -47,7 +52,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border CornerRadius="4" Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="0.5">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding Background}" BorderThickness="0.5">
                             <Border.Effect>
                                 <DropShadowEffect ShadowDepth="0" BlurRadius="2"/>
                             </Border.Effect>
@@ -71,7 +76,8 @@
 
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#E59400" />
+                                <Setter Property="Background" Value="{DynamicResource ButtongradientHover}" />
+                                <Setter Property="BorderBrush" Value="{DynamicResource ButtongradientHover}" />
                                 <Setter Property="Foreground" Value="White" />
                                 <!--<Setter TargetName="PathIcon" Property="Fill" Value="Black" />-->
                             </Trigger>
@@ -83,6 +89,7 @@
 
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Background" Value="{DynamicResource ButtongradientDisabled}" />
+                                <Setter Property="BorderBrush" Value="{DynamicResource ButtongradientDisabled}" />
                                 <Setter Property="Foreground" Value="#66FFFFFF" />
                             </Trigger>
                         </ControlTemplate.Triggers>

@@ -48,7 +48,7 @@
                             <ItemsControl ItemsSource="{Binding}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding ErrorContent}" FontSize="14" Foreground="DarkRed"/>
+                                        <TextBlock Text="{Binding ErrorContent}" FontSize="16" FontWeight="Bold" Foreground="DarkRed"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>

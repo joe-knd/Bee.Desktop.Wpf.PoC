@@ -29,7 +29,7 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
             set
             {
                 SetProperty(ref emailAddress, value);
-                this.ValidateAllProperties();
+                ValidateProperty(emailAddress);
                 AuthorizeCommand.NotifyCanExecuteChanged();
             }
         }
@@ -40,7 +40,7 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
 
         public bool AuthorizeCanExecute()
         {
-            return !this.HasErrors;
+            return !HasErrors;
         }
     }
 }

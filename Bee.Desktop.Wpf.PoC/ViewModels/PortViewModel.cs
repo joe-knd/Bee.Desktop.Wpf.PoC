@@ -10,26 +10,27 @@ using System.Windows;
 
 namespace Bee.Desktop.Wpf.PoC.ViewModels
 {
-    public class EmailViewModel : MyObservableValidator
+    public class PortViewModel : MyObservableValidator
     {
-        private string? emailAddress = string.Empty;
+        private int? portNumber = null;
+
         public IAsyncRelayCommand AuthorizeCommand { get; }
 
-        public EmailViewModel()
+        public PortViewModel()
         {
             AuthorizeCommand = new AsyncRelayCommand(Authorize, () => AuthorizeCanExecute());
             this.ValidateAllProperties();
         }
 
         [Required]
-        [EmailAddress]
-        public string? EmailAddress
+        [Range(0, 9999)]
+        public int? PortNumber
         {
-            get => emailAddress;
+            get => portNumber;
             set
             {
-                SetProperty(ref emailAddress, value);
-                ValidateProperty(emailAddress);
+                SetProperty(ref portNumber, value);
+                ValidateProperty(portNumber);
                 AuthorizeCommand.NotifyCanExecuteChanged();
             }
         }

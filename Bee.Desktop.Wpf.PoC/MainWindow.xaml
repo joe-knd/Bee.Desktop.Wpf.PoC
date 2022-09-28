@@ -8,10 +8,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="800">
     <Window.DataContext>
-        <viewModels:EMailViewModel/>
+        <viewModels:EmailViewModel/>
     </Window.DataContext>
     <Window.Background>
-        <ImageBrush ImageSource="/20404276.jpg" Stretch="None"/>
+        <!--<ImageBrush ImageSource="/Resources/20404276.jpg" Stretch="None"/>-->
+        <!--<ImageBrush ImageSource="/Resources/background.jpg" Stretch="None"/>-->
+        <!--<ImageBrush ImageSource="/Resources/background.jpg" Stretch="None"/>-->
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="LightGray" Offset="0.5" />
+            <GradientStop Color="DarkCyan" Offset="2.5" />
+        </LinearGradientBrush>
     </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
@@ -21,3 +27,5 @@
         <Frame Source="Email.xaml"/>
     </Grid>
 </Window>
+
+    

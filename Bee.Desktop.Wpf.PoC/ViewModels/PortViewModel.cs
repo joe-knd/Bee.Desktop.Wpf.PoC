@@ -1,12 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace Bee.Desktop.Wpf.PoC.ViewModels
 {
@@ -24,6 +18,7 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
 
         [Required]
         [Range(0, 9999)]
+        [EmailAddress]
         public int? PortNumber
         {
             get => portNumber;

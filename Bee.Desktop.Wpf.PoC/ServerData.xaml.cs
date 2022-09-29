@@ -18,9 +18,9 @@ namespace Bee.Desktop.Wpf.PoC
     /// <summary>
     /// Interaction logic for IpAddress.xaml
     /// </summary>
-    public partial class IpAddress : Page
+    public partial class ServerData : Page
     {
-        public IpAddress()
+        public ServerData()
         {
             InitializeComponent();
         }

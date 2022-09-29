@@ -18,9 +18,9 @@ namespace Bee.Desktop.Wpf.PoC
     /// <summary>
     /// Interaction logic for Email.xaml
     /// </summary>
-    public partial class Email : Page
+    public partial class Authorize : Page
     {
-        public Email()
+        public Authorize()
         {
             InitializeComponent();
         }

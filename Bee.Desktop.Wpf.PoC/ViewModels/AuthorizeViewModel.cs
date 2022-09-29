@@ -10,19 +10,19 @@ using System.Windows;
 
 namespace Bee.Desktop.Wpf.PoC.ViewModels
 {
-    public class EMailViewModel : ObservableValidator
+    public class AuthorizeViewModel : ObservableValidator
     {
         private string? emailAddress = string.Empty;
         public IAsyncRelayCommand AuthorizeCommand { get; }
 
-        public EMailViewModel()
+        public AuthorizeViewModel()
         {
             AuthorizeCommand = new AsyncRelayCommand(Authorize, () => AuthorizeCanExecute());
             this.ValidateAllProperties();
         }
 
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage ="Email address is required")]
+        [EmailAddress(ErrorMessage ="The Email adress is not well formed")]
         public string? EmailAddress
         {
             get => emailAddress;

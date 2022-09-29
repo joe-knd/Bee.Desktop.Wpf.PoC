@@ -26,4 +26,13 @@
     <Resource Include="Resources\20404276.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="Authorize.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Port.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+  </ItemGroup>
+
 </Project>

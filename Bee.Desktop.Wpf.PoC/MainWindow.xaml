@@ -24,7 +24,7 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Frame Source="Email.xaml"/>
+        <Frame Source="Authorize.xaml"/>
     </Grid>
 </Window>
 

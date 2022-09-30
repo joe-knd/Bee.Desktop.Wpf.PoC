@@ -14,17 +14,17 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
     public class ServerViewModel : ObservableValidator
     {
         private string? ipAddress = string.Empty;
-        private int? port = 0;
-        public IAsyncRelayCommand AuthorizeCommand { get; }
+        private string? port = string.Empty;
+        public IAsyncRelayCommand SaveCommand { get; }
 
         public ServerViewModel()
         {
-            AuthorizeCommand = new AsyncRelayCommand(Authorize, () => AuthorizeCanExecute());
-            this.ValidateAllProperties();
+            SaveCommand = new AsyncRelayCommand(Save, () => SaveCanExecute());
+            ValidateAllProperties();
         }
 
         [Required(ErrorMessage ="Printer IP address is required")]
-        [RegularExpression ("^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$")]
+        [RegularExpression ("^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$", ErrorMessage ="IP Address is not well formed")]
         public string? IpAddress
         {
             get => ipAddress;
@@ -32,29 +32,29 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
             {
                 SetProperty(ref ipAddress, value);
                 ValidateProperty(ipAddress);
-                AuthorizeCommand.NotifyCanExecuteChanged();
+                SaveCommand.NotifyCanExecuteChanged();
             }
         }
 
         [Required(ErrorMessage = "Printer Port address is required")]
-        [Range(1,99999)]
-        public int? Port
+        [Range(1,99999, ErrorMessage = "Invalid range")]
+        public string? Port
         {
             get => port;
             set
             {
                 SetProperty(ref port, value);
                 ValidateProperty(port);
-                AuthorizeCommand.NotifyCanExecuteChanged();
+                SaveCommand.NotifyCanExecuteChanged();
             }
         }
 
-        public async Task Authorize()
+        public async Task Save()
         {
             MessageBox.Show("Authorized");
         }
 
-        public bool AuthorizeCanExecute()
+        public bool SaveCanExecute()
         {
             return !HasErrors;
         }

@@ -72,7 +72,7 @@
                     <ControlTemplate>
                         <StackPanel>
                             <!-- Placeholder for the TextBox itself -->
-                            <Border BorderBrush="Red" BorderThickness="2" Margin="-1" CornerRadius="10" >
+                            <Border BorderBrush="Red" BorderThickness="2" Margin="-1" CornerRadius="10" Width="{TemplateBinding Width}" HorizontalAlignment="Left" >
                                 <AdornedElementPlaceholder x:Name="textBox"/>
                             </Border>
                             <ItemsControl ItemsSource="{Binding}">

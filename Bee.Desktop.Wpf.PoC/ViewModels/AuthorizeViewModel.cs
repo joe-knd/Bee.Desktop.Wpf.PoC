@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Bee.Desktop.Wpf.PoC.ViewModels
 {
@@ -35,6 +36,7 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
         }
         public async Task Authorize()
         {
+            
             MessageBox.Show("Authorized");
         }
 

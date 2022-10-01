@@ -13,12 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Bee.Desktop.Wpf.PoC
+namespace Bee.Desktop.Wpf.PoC.Views
 {
     /// <summary>
     /// Interaction logic for Email.xaml
     /// </summary>
-    public partial class Authorize : Page
+    public partial class Authorize : UserControl
     {
         public Authorize()
         {

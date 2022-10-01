@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace Bee.Desktop.Wpf.PoC.ViewModels
 {
-    public class AuthorizeViewModel : ObservableValidator
+    public class AuthorizeViewModel : BaseViewModel
     {
         private string? emailAddress = string.Empty;
         public IAsyncRelayCommand AuthorizeCommand { get; }

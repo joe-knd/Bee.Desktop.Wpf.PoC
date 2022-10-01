@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace Bee.Desktop.Wpf.PoC.ViewModels
 {
-    public class ServerViewModel : ObservableValidator
+    public class ServerViewModel : BaseViewModel
     {
         private string? ipAddress = string.Empty;
         private string? port = string.Empty;

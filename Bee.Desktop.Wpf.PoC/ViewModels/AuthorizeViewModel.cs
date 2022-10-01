@@ -22,8 +22,8 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
             this.ValidateAllProperties();
         }
 
-        [Required(ErrorMessage ="Email address is required")]
-        [EmailAddress(ErrorMessage ="The Email adress is not well formed")]
+        [Required(ErrorMessage = "Email address is required")]
+        [EmailAddress(ErrorMessage = "The Email adress is not well formed")]
         public string? EmailAddress
         {
             get => emailAddress;
@@ -36,8 +36,7 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
         }
         public async Task Authorize()
         {
-            
-            MessageBox.Show("Authorized");
+            MessageBox.Show("Authorized");            
         }
 
         public bool AuthorizeCanExecute()

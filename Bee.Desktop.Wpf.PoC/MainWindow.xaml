@@ -6,18 +6,19 @@
         xmlns:local="clr-namespace:Bee.Desktop.Wpf.PoC"
         xmlns:viewModels="clr-namespace:Bee.Desktop.Wpf.PoC.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="800">
+        ResizeMode="CanMinimize"
+        Title="MainWindow" Height="450" Width="800">
     
     <Window.DataContext>
         <viewModels:MainViewModel/>
     </Window.DataContext>
     
     <Window.Background>
-        <!--<ImageBrush ImageSource="/20404276.jpg" Stretch="None"/>-->
-        <LinearGradientBrush>
+        <ImageBrush ImageSource="/20404276.jpg" Stretch="None"/>
+        <!--<LinearGradientBrush>
             <GradientStop Color="DodgerBlue" Offset="0.25" />
             <GradientStop Color="AliceBlue" Offset="1.5" />
-        </LinearGradientBrush>
+        </LinearGradientBrush>-->
     </Window.Background>
     <Grid>
         <Grid.RowDefinitions>

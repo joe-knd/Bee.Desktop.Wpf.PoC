@@ -9,12 +9,13 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
     {
         private string? emailAddress = string.Empty;
         public IAsyncRelayCommand AuthorizeCommand { get; }
-        public IAsyncRelayCommand ShowServerCommand { get; }        
+        public UserSenderViewModel SenderViewModel { get; } = new UserSenderViewModel();
+
 
         public AuthorizeViewModel()
         {
             AuthorizeCommand = new AsyncRelayCommand(Authorize, () => AuthorizeCanExecute());
-            ShowServerCommand = new AsyncRelayCommand(SetEmail, () => ShowServerCanExecute());
+            //ShowServerCommand = new AsyncRelayCommand(SetEmail, () => ShowServerCanExecute());
             this.ValidateAllProperties();
         }
 
@@ -23,10 +24,11 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
 
         }
 
-        public bool ShowServerCanExecute()
-        {
-            return !AuthorizeCanExecute();
-        }
+        //public bool ShowServerCanExecute()
+        //{
+            
+        //    return !AuthorizeCanExecute();
+        //}
 
         [Required(ErrorMessage = "Email address is required")]
         [EmailAddress(ErrorMessage = "The Email adress is not well formed")]
@@ -38,7 +40,7 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
                 SetProperty(ref emailAddress, value);
                 ValidateProperty(emailAddress);
                 AuthorizeCommand.NotifyCanExecuteChanged();
-                ShowServerCommand.NotifyCanExecuteChanged();
+                //ShowServerCommand.NotifyCanExecuteChanged();
             }
         }
         public async Task Authorize()
@@ -48,6 +50,7 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
 
         public bool AuthorizeCanExecute()
         {
+            SenderViewModel.SendUserMessage();
             return HasErrors;
         }
     }

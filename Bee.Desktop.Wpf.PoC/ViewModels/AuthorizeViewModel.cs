@@ -5,11 +5,8 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 
 namespace Bee.Desktop.Wpf.PoC.ViewModels
 {
@@ -17,15 +14,27 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
     {
         private string? emailAddress = string.Empty;
         public IAsyncRelayCommand AuthorizeCommand { get; }
+        public IAsyncRelayCommand ShowServerCommand { get; }        
 
         public AuthorizeViewModel()
         {
             AuthorizeCommand = new AsyncRelayCommand(Authorize, () => AuthorizeCanExecute());
+            ShowServerCommand = new AsyncRelayCommand(SetEmail, () => ShowServerCanExecute());
             this.ValidateAllProperties();
         }
 
-        [Required(ErrorMessage ="Email address is required")]
-        [EmailAddress(ErrorMessage ="The Email adress is not well formed")]
+        public async Task SetEmail()
+        {
+
+        }
+
+        public bool ShowServerCanExecute()
+        {
+            return !AuthorizeCanExecute();
+        }
+
+        [Required(ErrorMessage = "Email address is required")]
+        [EmailAddress(ErrorMessage = "The Email adress is not well formed")]
         public string? EmailAddress
         {
             get => emailAddress;
@@ -34,17 +43,17 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
                 SetProperty(ref emailAddress, value);
                 ValidateProperty(emailAddress);
                 AuthorizeCommand.NotifyCanExecuteChanged();
+                ShowServerCommand.NotifyCanExecuteChanged();
             }
         }
         public async Task Authorize()
         {
-            
-            MessageBox.Show("Authorized");
+            EmailAddress = "joe@doe.com";        
         }
 
         public bool AuthorizeCanExecute()
         {
-            return !HasErrors;
+            return HasErrors;
         }
     }
 }

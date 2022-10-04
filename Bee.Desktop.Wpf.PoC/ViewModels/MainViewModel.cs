@@ -7,32 +7,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace Bee.Desktop.Wpf.PoC.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
         private BaseViewModel currentViewModel;
-        private IRelayCommand showServerView;
-       public MainViewModel()
-        {
-            CurrentViewModel = new AuthorizeViewModel();
-        }
+        private IAsyncRelayCommand showServerCommand;
 
-        public IRelayCommand ShowServerView
+        public MainViewModel()
+        {            
+            CurrentViewModel = new AuthorizeViewModel();
+            this.ValidateAllProperties();
+        }                
+
+        public IAsyncRelayCommand ShowServerView //IRelayCommand ShowServerView
         {
             get
             {
-                if (showServerView == null) 
+                if (showServerCommand == null)
                 {
-                    showServerView = new RelayCommand(ShowServer);
+                    showServerCommand = new AsyncRelayCommand(ShowServer);
+                    //showServerCommand = new AsyncRelayCommand(ShowServer, () => ShowServerCanExecute());
                 }
 
-                return showServerView;
+                return showServerCommand;
             }
         }
-        public BaseViewModel CurrentViewModel 
+
+        public BaseViewModel CurrentViewModel
         {
             get => currentViewModel;
             set
@@ -40,10 +43,11 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
                 SetProperty(ref currentViewModel, value);
             }
         }
-
-        public void ShowServer()
+        
+        public async Task ShowServer()
         {
             CurrentViewModel = new ServerViewModel();
+            showServerCommand.NotifyCanExecuteChanged();
         }
     }
 }

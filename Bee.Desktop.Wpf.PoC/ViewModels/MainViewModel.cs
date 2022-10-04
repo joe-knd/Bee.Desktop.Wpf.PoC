@@ -18,7 +18,7 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
             CurrentViewModel = new AuthorizeViewModel();
         }
 
-        public IRelayCommand ShowServerView
+        public IAsyncRelayCommand ShowServerView //IRelayCommand ShowServerView
         {
             get
             {

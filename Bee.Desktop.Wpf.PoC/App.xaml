@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:Bee.Desktop.Wpf.PoC"
              xmlns:ViewModels="clr-namespace:Bee.Desktop.Wpf.PoC.ViewModels"
              xmlns:Views="clr-namespace:Bee.Desktop.Wpf.PoC.Views"
-             StartupUri="MainWindow.xaml">
+             >
     <Application.Resources>
         <DataTemplate DataType="{x:Type ViewModels:AuthorizeViewModel}">
             <Views:Authorize />

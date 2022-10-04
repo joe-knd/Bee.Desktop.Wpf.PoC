@@ -14,19 +14,16 @@
     </Window.DataContext>
     
     <Window.Background>
-        <ImageBrush ImageSource="/20404276.jpg" Stretch="None"/>
-        <!--<LinearGradientBrush>
+        <LinearGradientBrush>
             <GradientStop Color="DodgerBlue" Offset="0.25" />
             <GradientStop Color="AliceBlue" Offset="1.5" />
-        </LinearGradientBrush>-->
+        </LinearGradientBrush>
     </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <!--<Frame Source="Authorize.xaml"/>-->
-        <!--<Frame Source="ServerData.xaml"/>-->
         <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>

@@ -12,5 +12,14 @@ namespace Bee.Desktop.Wpf.PoC.Models
         [Required]
         [EmailAddress]
         public string? EmailAddress { get; set; }
+
+        [Required]
+        public string? IPV4Address { get; set; }
+
+        [Required]
+        public string? PortNumber { get; set; }
+
+        [Required]
+        public string? SecurePIN { get; set; }
     }
 }

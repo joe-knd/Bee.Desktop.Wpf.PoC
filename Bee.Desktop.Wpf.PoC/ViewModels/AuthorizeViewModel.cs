@@ -1,12 +1,7 @@
-﻿using Bee.Desktop.Wpf.PoC.Settings;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Bee.Desktop.Wpf.PoC.Models;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace Bee.Desktop.Wpf.PoC.ViewModels
 {
@@ -14,23 +9,17 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
     {
         private string? emailAddress = string.Empty;
         public IAsyncRelayCommand AuthorizeCommand { get; }
-        public IAsyncRelayCommand ShowServerCommand { get; }        
+        public NavigationSenderViewModel SenderViewModel { get; } = new NavigationSenderViewModel();
+
 
         public AuthorizeViewModel()
         {
             AuthorizeCommand = new AsyncRelayCommand(Authorize, () => AuthorizeCanExecute());
-            ShowServerCommand = new AsyncRelayCommand(SetEmail, () => ShowServerCanExecute());
             this.ValidateAllProperties();
         }
 
         public async Task SetEmail()
         {
-
-        }
-
-        public bool ShowServerCanExecute()
-        {
-            return !AuthorizeCanExecute();
         }
 
         [Required(ErrorMessage = "Email address is required")]
@@ -43,12 +32,13 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
                 SetProperty(ref emailAddress, value);
                 ValidateProperty(emailAddress);
                 AuthorizeCommand.NotifyCanExecuteChanged();
-                ShowServerCommand.NotifyCanExecuteChanged();
             }
         }
+
         public async Task Authorize()
         {
-            EmailAddress = "joe@doe.com";        
+            EmailAddress = "joe@doe.com";
+            SenderViewModel.SendUserMessage(new NavigationModel(true, "server"));
         }
 
         public bool AuthorizeCanExecute()

@@ -51,7 +51,9 @@ namespace Bee.Desktop.Wpf.PoC.ViewModels
 
         public async Task Save()
         {
-            MessageBox.Show("Authorized");
+            var r = new Random();
+            var password = Guid.NewGuid().ToString().Replace("-", "").Substring(r.Next(0, 9), r.Next(10, 15));
+            MessageBox.Show(password);
         }
 
         public bool SaveCanExecute()

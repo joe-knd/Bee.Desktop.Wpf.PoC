@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Local="clr-namespace:Bee.Desktop.Wpf.PoC"
+                    xmlns:ViewModels="clr-namespace:Bee.Desktop.Wpf.PoC.Messenger"
+                    xmlns:Views="clr-namespace:Bee.Desktop.Wpf.PoC.Views">
+    <DataTemplate DataType="{x:Type ViewModels:AuthorizeViewModel}">
+        <Views:Authorize />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type ViewModels:ServerViewModel}">
+        <Views:ServerData />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type ViewModels:MainViewModel}">
+        <Local:MainWindow />
+    </DataTemplate>
+</ResourceDictionary>

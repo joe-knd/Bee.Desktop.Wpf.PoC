@@ -1,14 +1,15 @@
-﻿namespace Bee.Desktop.Wpf.PoC.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Bee.Desktop.Wpf.PoC.Models
 {
     public class NavigationModel
     {
-        public bool CanExecute { get; set; }
-        public string ViewModelName { get; set; }
+        public NavigationCommandModel? PreviousCommand { get; set; }
 
-        public NavigationModel(bool canExecute, string viewModelName)
-        {
-            CanExecute = canExecute;
-            ViewModelName = viewModelName;
-        }
+        public NavigationCommandModel? NextCommand { get; set; }
     }
 }

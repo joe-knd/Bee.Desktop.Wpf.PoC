@@ -1,14 +1,13 @@
-﻿using Bee.Desktop.Wpf.PoC.Messenger;
-using Bee.Desktop.Wpf.PoC.Models;
+﻿using Bee.Desktop.Wpf.PoC.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 
-namespace Bee.Desktop.Wpf.PoC.ViewModels
+namespace Bee.Desktop.Wpf.PoC.Messenger
 {
     // Simple viewmodel for a module sending a username message
-    public partial class NavigationSenderViewModel : ObservableRecipient
+    public partial class NavigationSender : ObservableRecipient
     {
-        public void SendUserMessage(NavigationModel navigationModel)
+        public void SendNavigationChangeMessage(NavigationModel navigationModel)
         {
             Messenger.Send(new NavigationChangedMessage(navigationModel));
         }

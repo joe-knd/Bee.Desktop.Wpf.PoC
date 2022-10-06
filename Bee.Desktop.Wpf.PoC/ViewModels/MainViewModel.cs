@@ -1,76 +1,82 @@
 ﻿using Bee.Desktop.Wpf.PoC.Messenger;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Threading.Tasks;
 
-namespace Bee.Desktop.Wpf.PoC.ViewModels
+namespace Bee.Desktop.Wpf.PoC.Messenger
 {
-    public class MainViewModel : BaseViewModel
+    public partial class MainViewModel : BaseViewModel
     {
-        private BaseViewModel currentViewModel;
-        private bool showServer = false;
-        private IAsyncRelayCommand showServerCommand;
-        public NavigationReceiverViewModel ReceiverViewModel { get; } = new NavigationReceiverViewModel();
+        [ObservableProperty]
+        private BaseViewModel? currentViewModel;
+
+        private bool canNavigateNext;
+        private bool canNavigatePrevious;
+        private BaseViewModel? NextViewModel;
+        private BaseViewModel? PreviousViewModel;
+
+        public NavigationReceiver Receiver { get; } = new NavigationReceiver();
 
         public MainViewModel()
         {
             CurrentViewModel = new AuthorizeViewModel();
-
+            
             // Register a message in some module
             WeakReferenceMessenger.Default.Register<NavigationChangedMessage>(this, (r, m) =>
             {
-                //switch(m.Value.ViewModelName):
-                switch (m.Value.ViewModelName)
+                canNavigateNext = m.Value.NextCommand != null && m.Value.NextCommand.CanExecute;
+                canNavigatePrevious = m.Value.PreviousCommand != null && m.Value.PreviousCommand.CanExecute;
+
+                //Next
+                switch (m.Value.NextCommand?.ViewModelName)
                 {
-                    case "server":
-                        showServer = m.Value.CanExecute;
+                    case "ServerViewModel":
+                        NextViewModel = new ServerViewModel();
                         break;
                     default:
-                        showServer = true;
+                        NextViewModel = null;
                         break;
                 }
 
-                ShowServerView.NotifyCanExecuteChanged();
+                //Previous
+                switch (m.Value.PreviousCommand?.ViewModelName)
+                {
+                    case "AuthorizeViewModel":
+                        PreviousViewModel = new AuthorizeViewModel();
+                        break;
+                    default:
+                        PreviousViewModel = null;
+                        break;
+                }
+
+                NavigateNextCommand.NotifyCanExecuteChanged();
             });
 
             this.ValidateAllProperties();
         }
 
-        private void ReceiverViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+
+        [RelayCommand(CanExecute = nameof(CanNavigateNext))]
+        public void NavigateNext()
         {
-            showServerCommand.NotifyCanExecuteChanged();
+            CurrentViewModel = NextViewModel;
         }
 
-        public IAsyncRelayCommand ShowServerView
+        public bool CanNavigateNext()
         {
-            get
-            {
-                if (showServerCommand == null)
-                {                    
-                    showServerCommand = new AsyncRelayCommand(ShowServer, () => showServer);
-                }
-
-                return showServerCommand;
-            }
+            return canNavigateNext;
         }
 
-        //private bool ShowServerCanExecute()
-        //{
-        //    return showServer;
-        //}
-
-        public BaseViewModel CurrentViewModel
+        [RelayCommand(CanExecute = nameof(CanNavigatePrevious))]
+        public void NavigatePrevious()
         {
-            get => currentViewModel;
-            set
-            {
-                SetProperty(ref currentViewModel, value);
-            }
+            CurrentViewModel = PreviousViewModel;
         }
 
-        public async Task ShowServer()
+        public bool CanNavigatePrevious()
         {
-            CurrentViewModel = new ServerViewModel();
+            return canNavigatePrevious;
         }
     }
 }

@@ -51,6 +51,7 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
                 }
 
                 NavigateNextCommand.NotifyCanExecuteChanged();
+                NavigatePreviousCommand.NotifyCanExecuteChanged();
             });
 
             this.ValidateAllProperties();

@@ -28,7 +28,7 @@
 
     <mah:MetroWindow.RightWindowCommands>
         <mah:WindowCommands>
-            <ComboBox Width="120" Margin="2" ItemsSource="{Binding Themes}" SelectedValue="{Binding SelectedTheme}" DisplayMemberPath="Name" />
+            <ComboBox Width="120" Height="10" ItemsSource="{Binding Themes}" SelectedValue="{Binding SelectedTheme}" DisplayMemberPath="Name" />
             <Button>
                 <Button.ContentTemplate>
                     <DataTemplate>

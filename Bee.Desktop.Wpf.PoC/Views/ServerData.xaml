@@ -24,30 +24,32 @@
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Column="1" Grid.Row="1" >
-            <Grid.Background>
-                <SolidColorBrush Color="White" Opacity=".5"/>
-            </Grid.Background>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="50"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition/>
-                <RowDefinition Height="50"/>
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24">IP:</TextBlock>
-            <TextBox Grid.Column="2" Grid.Row="1" FontSize="20" Padding="5" Text="{Binding IpAddress, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,5" HorizontalAlignment="Left" Width="250" />
-            <TextBlock Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24">Port:</TextBlock>
-            <TextBox Grid.Column="2" Grid.Row="3" FontSize="20" Padding="5" Text="{Binding Port, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,5" HorizontalAlignment="Left" Width="150" />
-            <Button Grid.Column="2" Grid.Row="4" Command="{Binding SaveCommand}" VerticalAlignment="Bottom" Content="Save" Height="32" HorizontalAlignment="Right" Width="100" />
-        </Grid>
+        <GroupBox Header="Server Configuration" Grid.Column="1" Grid.Row="1">
+            <Grid>
+                <Grid.Background>
+                    <SolidColorBrush Color="White" Opacity=".5"/>
+                </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24">IP:</TextBlock>
+                <TextBox Grid.Column="2" Grid.Row="1" FontSize="20" Padding="5" Text="{Binding IpAddress, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,5" HorizontalAlignment="Left" Width="250" />
+                <TextBlock Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24">Port:</TextBlock>
+                <TextBox Grid.Column="2" Grid.Row="3" FontSize="20" Padding="5" Text="{Binding Port, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,5" HorizontalAlignment="Left" Width="150" />
+                <Button Grid.Column="2" Grid.Row="4" Command="{Binding SaveCommand}" VerticalAlignment="Bottom" Content="Save" Height="32" HorizontalAlignment="Right" Width="100" />
+            </Grid>
+        </GroupBox>
     </Grid>
 </UserControl>
 

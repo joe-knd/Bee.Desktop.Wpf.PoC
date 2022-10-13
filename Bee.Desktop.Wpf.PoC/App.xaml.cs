@@ -14,9 +14,9 @@ namespace Bee.Desktop.Wpf.PoC
     {
         public new static App Current => (App)Application.Current;
 
-        public IServiceProvider ServiceProvider { get; private set; }
+        public IServiceProvider? ServiceProvider { get; private set; }
 
-        public IConfiguration Configuration { get; private set; }
+        public IConfiguration? Configuration { get; private set; }
         protected override void OnStartup(StartupEventArgs e)
         {
             var builder = new ConfigurationBuilder()

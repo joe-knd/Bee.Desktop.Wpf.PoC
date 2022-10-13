@@ -36,7 +36,7 @@ namespace Bee.Desktop.Wpf.PoC
 
         private void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<AppSettings>(Configuration.GetSection(nameof(AppSettings)));
+            services.Configure<AppSettings>(Configuration?.GetSection(nameof(AppSettings)));
             //services.AddSingleton<IDataService, DataService>();
             services.AddSingleton(typeof(IServiceProvider), services);
             services.AddTransient(typeof(MainWindow));

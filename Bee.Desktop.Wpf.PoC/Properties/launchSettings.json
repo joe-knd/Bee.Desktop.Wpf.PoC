@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "Bee.Desktop.Wpf.PoC - Dev": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Bee.Desktop.Wpf.PoC - Prod": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      }
+    }
+  }
+}

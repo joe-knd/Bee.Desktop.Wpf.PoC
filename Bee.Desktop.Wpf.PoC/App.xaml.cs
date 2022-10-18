@@ -19,9 +19,11 @@ namespace Bee.Desktop.Wpf.PoC
         public IConfiguration? Configuration { get; private set; }
         protected override void OnStartup(StartupEventArgs e)
         {
+            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
             var builder = new ConfigurationBuilder()
              .SetBasePath(Directory.GetCurrentDirectory())
-             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+             .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true);
 
             Configuration = builder.Build();
 
@@ -40,8 +42,6 @@ namespace Bee.Desktop.Wpf.PoC
             //services.AddSingleton<IDataService, DataService>();
             services.AddSingleton(typeof(IServiceProvider), services);
             services.AddTransient(typeof(MainWindow));
-
-
         }
     }
 }

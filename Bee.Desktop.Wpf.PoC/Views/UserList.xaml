@@ -48,7 +48,6 @@
                                     Content="{Binding EmailAddress}" 
                                     IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                     Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=DataContext.UserSelectedCommand}" 
-                                    CommandParameter="{Binding}"
                                     Margin="2" />
                             </DataTemplate>
                         </ListBox.ItemTemplate>

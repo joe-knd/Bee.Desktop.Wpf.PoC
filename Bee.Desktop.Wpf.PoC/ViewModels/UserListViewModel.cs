@@ -34,16 +34,17 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
             ValidateAllProperties();
         }
 
-        partial void OnUsersChanging(ObservableCollection<UserModel>? value)
+        [RelayCommand]
+        public void UserSelected()
         {
-            MessageBox.Show("entre");
+            SaveCommand.NotifyCanExecuteChanged();
         }
 
         [RelayCommand(CanExecute = nameof(CanSave))]
         public void Save()
         {
-            var usersCount = Users?.Select(x => x.IsSelected == true).Count();
-            MessageBox.Show($"Saved: {usersCount} user(s) selected");
+            var users = Users?.Where(x => x.IsSelected == true).ToList();
+            MessageBox.Show($"Saved: {users.Count()} user(s) selected");
         }
 
         public bool CanSave()

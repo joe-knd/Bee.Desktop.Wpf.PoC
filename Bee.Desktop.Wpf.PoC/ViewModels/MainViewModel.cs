@@ -15,7 +15,8 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
         [ObservableProperty]
         private BaseViewModel? currentViewModel;
 
-        private ThemeColor selectedTheme;
+        [ObservableProperty]
+        private ThemeColor? selectedTheme;
 
         [ObservableProperty]
         private List<ThemeColor>? themes;
@@ -24,7 +25,7 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
         private bool canNavigatePrevious;
         private BaseViewModel? NextViewModel;
         private BaseViewModel? PreviousViewModel;
-        public NavigationReceiver Receiver { get; } = new NavigationReceiver();
+        //public NavigationReceiver Receiver { get; } = new NavigationReceiver();
         public MainViewModel()
         {
             Themes ??= new List<ThemeColor>
@@ -57,6 +58,9 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
                     case "ServerViewModel":
                         NextViewModel = new ServerViewModel();
                         break;
+                    case "UserListViewModel":
+                        NextViewModel = new UserListViewModel();
+                        break;
                     default:
                         NextViewModel = null;
                         break;
@@ -80,13 +84,21 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
             ValidateAllProperties();
         }
 
-        public ThemeColor SelectedTheme
+        //public ThemeColor SelectedTheme
+        //{
+        //    get => selectedTheme;
+        //    set
+        //    {
+        //        ThemeManager.Current.ChangeTheme(App.Current, value.Name);
+        //        SetProperty(ref selectedTheme, value);
+        //    }
+        //}
+
+        partial void OnSelectedThemeChanged(ThemeColor? value)
         {
-            get => selectedTheme;
-            set
+            if (value != null)
             {
-                ThemeManager.Current.ChangeTheme(App.Current, value.Name);
-                SetProperty(ref selectedTheme, value);
+                ThemeManager.Current.ChangeTheme(App.Current, value.Name?? "Light.Blue");
             }
         }
 

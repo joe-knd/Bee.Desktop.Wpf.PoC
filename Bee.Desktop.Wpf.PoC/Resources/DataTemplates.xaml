@@ -12,4 +12,7 @@
     <DataTemplate DataType="{x:Type ViewModels:MainViewModel}">
         <Local:MainWindow />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type ViewModels:UserListViewModel}">
+        <Views:UserList />
+    </DataTemplate>
 </ResourceDictionary>

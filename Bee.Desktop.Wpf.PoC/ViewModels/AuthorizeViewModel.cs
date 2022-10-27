@@ -37,7 +37,7 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
                 {
                     CanExecute = CanShowServer(),
                     IsHidden = false,
-                    ViewModelName = nameof(ServerViewModel)
+                    ViewModelName = nameof(UserListViewModel) //nameof(ServerViewModel)
                 },
                 PreviousCommand = new NavigationCommandModel
                 {

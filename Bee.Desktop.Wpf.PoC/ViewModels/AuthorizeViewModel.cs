@@ -1,13 +1,8 @@
 ﻿using Bee.Desktop.Wpf.PoC.Models;
-using Bee.Desktop.Wpf.PoC.Settings;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace Bee.Desktop.Wpf.PoC.Messenger
 {
@@ -31,21 +26,22 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
         {
             EmailAddress = "joe@doe.com";
 
-            NavigationSenderProvider.SendNavigationChangeMessage(new NavigationModel
-            {
-                NextCommand = new NavigationCommandModel
-                {
-                    CanExecute = CanShowServer(),
-                    IsHidden = false,
-                    ViewModelName = nameof(UserListViewModel) //nameof(ServerViewModel)
-                },
-                PreviousCommand = new NavigationCommandModel
-                {
-                    CanExecute = true,
-                    IsHidden = false,
-                    ViewModelName = nameof(AuthorizeViewModel)
-                }
-            });
+            //NavigationSenderProvider.SendNavigationChangeMessage(new NavigationModel
+            //{
+            //    NextCommand = new NavigationCommandModel
+            //    {
+            //        CanExecute = CanShowServer(),
+            //        IsHidden = false,
+            //        ViewModelName = nameof(UserListViewModel) //nameof(ServerViewModel)
+            //    }
+            //    //,
+            //    //PreviousCommand = new NavigationCommandModel
+            //    //{
+            //    //    CanExecute = true,
+            //    //    IsHidden = false,
+            //    //    ViewModelName = nameof(AuthorizeViewModel)
+            //    //}
+            //});
 
         }
 
@@ -55,13 +51,29 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
         }
 
         [RelayCommand(CanExecute = nameof(CanShowServer))]
-        public void ShowServer()
+        public Task ShowServer()
         {
+            NavigationSenderProvider.SendNavigationChangeMessage(new NavigationModel
+            {
+                NextCommand = new NavigationCommandModel
+                {
+                    CanExecute = true,
+                    IsHidden = false,
+                    ViewModel = typeof(ServerViewModel)
+                }
+            });
+
+            return Task.CompletedTask;
         }
 
         public bool CanShowServer()
         {
             return !CanAuthorize();
+        }
+
+        public bool CanAddServer()
+        {
+            return true;
         }
     }
 }

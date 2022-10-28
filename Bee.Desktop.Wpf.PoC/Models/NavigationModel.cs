@@ -8,7 +8,7 @@ namespace Bee.Desktop.Wpf.PoC.Models
 {
     public class NavigationModel
     {
-        public NavigationCommandModel? PreviousCommand { get; set; }
+        //public NavigationCommandModel? PreviousCommand { get; set; }
 
         public NavigationCommandModel? NextCommand { get; set; }
     }

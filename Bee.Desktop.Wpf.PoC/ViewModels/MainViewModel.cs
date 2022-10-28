@@ -4,7 +4,9 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using ControlzEx.Theming;
+using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Navigation;
 
@@ -21,10 +23,10 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
         [ObservableProperty]
         private List<ThemeColor>? themes;
 
-        private bool canNavigateNext;
-        private bool canNavigatePrevious;
-        private BaseViewModel? NextViewModel;
-        private BaseViewModel? PreviousViewModel;
+        //private bool canNavigateNext;
+        //private bool canNavigatePrevious;
+        //private BaseViewModel NextViewModel;
+        //private BaseViewModel? PreviousViewModel;
         //public NavigationReceiver Receiver { get; } = new NavigationReceiver();
         public MainViewModel()
         {
@@ -50,38 +52,48 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
             WeakReferenceMessenger.Default.Register<NavigationChangedMessage>(this, (r, m) =>
             {
                 canNavigateNext = m.Value.NextCommand != null && m.Value.NextCommand.CanExecute;
-                canNavigatePrevious = m.Value.PreviousCommand != null && m.Value.PreviousCommand.CanExecute;
+                // canNavigatePrevious = m.Value.PreviousCommand != null && m.Value.PreviousCommand.CanExecute;
 
-                //Next
-                switch (m.Value.NextCommand?.ViewModelName)
-                {
-                    case "ServerViewModel":
-                        NextViewModel = new ServerViewModel();
-                        break;
-                    case "UserListViewModel":
-                        NextViewModel = new UserListViewModel();
-                        break;
-                    default:
-                        NextViewModel = null;
-                        break;
-                }
+                ////Next
+                //switch (m.Value.NextCommand?.ViewModelName)
+                //{
+                //    case "ServerViewModel":
+                //        NextViewModel = new ServerViewModel();
+                //        break;
+                //    case "UserListViewModel":
+                //        NextViewModel = new UserListViewModel();
+                //        break;
+                //    default:
+                //        NextViewModel = null;
+                //        break;
+                //}
 
-                //Previous
-                switch (m.Value.PreviousCommand?.ViewModelName)
-                {
-                    case "AuthorizeViewModel":
-                        PreviousViewModel = new AuthorizeViewModel();
-                        break;
-                    default:
-                        PreviousViewModel = null;
-                        break;
-                }
+                ////Previous
+                //switch (m.Value.PreviousCommand?.ViewModelName)
+                //{
+                //    case "AuthorizeViewModel":
+                //        PreviousViewModel = new AuthorizeViewModel();
+                //        break;
+                //    default:
+                //        PreviousViewModel = null;
+                //        break;
+                //}
+                var viewModelsList = App.Current.ServiceProvider.GetServices(typeof(BaseViewModel));
+                NextViewModel = (BaseViewModel)viewModelsList.FirstOrDefault(vm => vm.GetType().Equals(m.Value.NextCommand.ViewModel), typeof(AuthorizeViewModel));
 
                 NavigateNextCommand.NotifyCanExecuteChanged();
-                NavigatePreviousCommand.NotifyCanExecuteChanged();
+                NavigateNext();
+
+                NavigateNextCommand.NotifyCanExecuteChanged();
+                //NavigatePreviousCommand.NotifyCanExecuteChanged();
             });
 
             ValidateAllProperties();
+        }
+
+        public override void NavigateNext()
+        {
+            CurrentViewModel = NextViewModel;
         }
 
         //public ThemeColor SelectedTheme
@@ -103,26 +115,47 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
         }
 
 
-        [RelayCommand(CanExecute = nameof(CanNavigateNext))]
-        public void NavigateNext()
+        //[RelayCommand(CanExecute = nameof(CanNavigateNext))]
+        //public void NavigateNext()
+        //{
+        //    CurrentViewModel = NextViewModel;
+        //}
+
+        //public bool CanNavigateNext()
+        //{
+        //    return canNavigateNext;
+        //}
+
+        //[RelayCommand(CanExecute = nameof(CanNavigatePrevious))]
+        //public void NavigatePrevious()
+        //{
+        //    CurrentViewModel = PreviousViewModel;
+        //}
+
+        //public bool CanNavigatePrevious()
+        //{
+        //    return canNavigatePrevious;
+        //}
+
+        [RelayCommand(CanExecute = nameof(CanHome))]
+        public Task Home()
         {
-            CurrentViewModel = NextViewModel;
+            NavigationSenderProvider.SendNavigationChangeMessage(new NavigationModel
+            {
+                NextCommand = new NavigationCommandModel
+                {
+                    CanExecute = true,
+                    IsHidden = false,
+                    ViewModel = typeof(AuthorizeViewModel)
+                }
+            });
+
+            return Task.CompletedTask;
         }
 
-        public bool CanNavigateNext()
+        public bool CanHome()
         {
-            return canNavigateNext;
-        }
-
-        [RelayCommand(CanExecute = nameof(CanNavigatePrevious))]
-        public void NavigatePrevious()
-        {
-            CurrentViewModel = PreviousViewModel;
-        }
-
-        public bool CanNavigatePrevious()
-        {
-            return canNavigatePrevious;
+            return true;
         }
     }
 }

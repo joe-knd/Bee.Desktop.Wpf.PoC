@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Bee.Desktop.Wpf.PoC.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
@@ -33,9 +34,21 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
         }
 
         [RelayCommand(CanExecute = nameof(CanSave))]
-        public async Task Save()
+        public Task Save()
         {
             MessageBox.Show("Authorized");
+
+            NavigationSenderProvider.SendNavigationChangeMessage(new NavigationModel
+            {
+                NextCommand = new NavigationCommandModel
+                {
+                    CanExecute = true,
+                    IsHidden = false,
+                    ViewModel = typeof(UserListViewModel)
+                }
+            });
+
+            return Task.CompletedTask;
         }
 
         public bool CanSave()

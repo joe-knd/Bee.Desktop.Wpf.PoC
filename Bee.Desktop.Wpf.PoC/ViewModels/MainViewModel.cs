@@ -102,7 +102,6 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
             }
         }
 
-
         [RelayCommand(CanExecute = nameof(CanNavigateNext))]
         public void NavigateNext()
         {

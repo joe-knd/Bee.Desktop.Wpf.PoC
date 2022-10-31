@@ -35,7 +35,7 @@
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
-                <Border BorderThickness="1" Padding="2" BorderBrush="Black" CornerRadius="5" Grid.Column="1" Grid.Row="1">
+                <Border BorderThickness="1" Padding="2" BorderBrush="LightGray" CornerRadius="5" Grid.Column="1" Grid.Row="1">
                     <ListBox ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Extended">
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">

@@ -1,4 +1,6 @@
-﻿using Bee.Desktop.Wpf.PoC.Settings;
+﻿using Bee.Desktop.Wpf.PoC.Messenger;
+using Bee.Desktop.Wpf.PoC.Settings;
+using Bee.Desktop.Wpf.PoC.Views;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -41,6 +43,9 @@ namespace Bee.Desktop.Wpf.PoC
             services.Configure<AppSettings>(Configuration?.GetSection(nameof(AppSettings)));
             //services.AddSingleton<IDataService, DataService>();
             services.AddSingleton(typeof(IServiceProvider), services);
+            services.AddSingleton<BaseViewModel, AuthorizeViewModel>();
+            services.AddSingleton<BaseViewModel, ServerViewModel>();
+            services.AddSingleton<BaseViewModel, UserListViewModel>();
             services.AddTransient(typeof(MainWindow));
         }
     }

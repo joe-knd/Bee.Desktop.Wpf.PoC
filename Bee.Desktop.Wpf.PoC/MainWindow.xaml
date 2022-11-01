@@ -29,7 +29,7 @@
     <mah:MetroWindow.RightWindowCommands>
         <mah:WindowCommands>
             <ComboBox Width="120" Height="10" ItemsSource="{Binding Themes}" SelectedValue="{Binding SelectedTheme}" DisplayMemberPath="Name" />
-            <Button>
+            <Button Command="{Binding HomeCommand}">
                 <Button.ContentTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

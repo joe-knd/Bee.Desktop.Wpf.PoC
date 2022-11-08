@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.32916.344
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bee.Desktop.Wpf.PoC", "Bee.Desktop.Wpf.PoC\Bee.Desktop.Wpf.PoC.csproj", "{CD42D55C-BFA5-41B6-8DB1-8BD86F86A10C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bee.Desktop.Wpf.PoC", "Bee.Desktop.Wpf.PoC\Bee.Desktop.Wpf.PoC.csproj", "{CD42D55C-BFA5-41B6-8DB1-8BD86F86A10C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bee.Data.LiteDb", "Bee.Data.LiteDb\Bee.Data.LiteDb.csproj", "{92C38F0E-8CDB-476D-BDFF-19E0E15E927E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bee.Data.Abstractions", "Bee.Data.Abstractions\Bee.Data.Abstractions.csproj", "{A08124F2-0931-472F-90F9-AEE7B97C5695}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bee.Data.Service", "Bee.Data.Service\Bee.Data.Service.csproj", "{000BE8F6-7987-4AAC-AE97-71E6273E6154}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{CD42D55C-BFA5-41B6-8DB1-8BD86F86A10C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD42D55C-BFA5-41B6-8DB1-8BD86F86A10C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD42D55C-BFA5-41B6-8DB1-8BD86F86A10C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92C38F0E-8CDB-476D-BDFF-19E0E15E927E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92C38F0E-8CDB-476D-BDFF-19E0E15E927E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92C38F0E-8CDB-476D-BDFF-19E0E15E927E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92C38F0E-8CDB-476D-BDFF-19E0E15E927E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A08124F2-0931-472F-90F9-AEE7B97C5695}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A08124F2-0931-472F-90F9-AEE7B97C5695}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A08124F2-0931-472F-90F9-AEE7B97C5695}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A08124F2-0931-472F-90F9-AEE7B97C5695}.Release|Any CPU.Build.0 = Release|Any CPU
+		{000BE8F6-7987-4AAC-AE97-71E6273E6154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{000BE8F6-7987-4AAC-AE97-71E6273E6154}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{000BE8F6-7987-4AAC-AE97-71E6273E6154}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{000BE8F6-7987-4AAC-AE97-71E6273E6154}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,10 @@
-﻿using Bee.Desktop.Wpf.PoC.Messenger;
+﻿using Bee.Data.Abstractions;
+using Bee.Data.LiteDb;
+using Bee.Data.Service;
+using Bee.Desktop.Wpf.PoC.Messenger;
 using Bee.Desktop.Wpf.PoC.Settings;
 using Bee.Desktop.Wpf.PoC.Views;
+using LiteDB;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -41,8 +45,11 @@ namespace Bee.Desktop.Wpf.PoC
         private void ConfigureServices(IServiceCollection services)
         {
             services.Configure<AppSettings>(Configuration?.GetSection(nameof(AppSettings)));
-            //services.AddSingleton<IDataService, DataService>();
-            services.AddSingleton(typeof(IServiceProvider), services);
+            services.Configure<LiteDbOptions>(Configuration?.GetSection(nameof(LiteDbOptions)));
+
+            services.AddSingleton<IRepository<ILiteRepository>, LiteDbRepository>();
+            services.AddSingleton<IUserService, UserService>();
+
             services.AddSingleton<BaseViewModel, AuthorizeViewModel>();
             services.AddSingleton<BaseViewModel, ServerViewModel>();
             services.AddSingleton<BaseViewModel, UserListViewModel>();

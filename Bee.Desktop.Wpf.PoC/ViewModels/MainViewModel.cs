@@ -1,13 +1,17 @@
-﻿using Bee.Desktop.Wpf.PoC.Messenger;
+﻿using Bee.Data.LiteDb;
+using Bee.Desktop.Wpf.PoC.Messenger;
 using Bee.Desktop.Wpf.PoC.Models;
+using Bee.Desktop.Wpf.PoC.Settings;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using ControlzEx.Theming;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Navigation;
 
 namespace Bee.Desktop.Wpf.PoC.Messenger

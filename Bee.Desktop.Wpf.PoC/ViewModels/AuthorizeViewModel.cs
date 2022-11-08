@@ -59,7 +59,7 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
                 {
                     CanExecute = true,
                     IsHidden = false,
-                    ViewModel = typeof(ServerViewModel)
+                    ViewModel = typeof(UserListViewModel)
                 }
             });
 

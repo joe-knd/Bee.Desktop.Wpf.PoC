@@ -25,7 +25,7 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
 
         public UserListViewModel()
         {
-            var userService = App.Current.ServiceProvider?.GetService(typeof(IUserService)) as IUserService;
+            var userService = App.Current.ServiceProvider?.GetService(typeof(IService<User>)) as IService<User>;
 
             if (userService != null) 
             {

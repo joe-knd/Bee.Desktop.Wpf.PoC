@@ -10,44 +10,44 @@ using System.Threading.Tasks;
 
 namespace Bee.Data.Service
 {
-    public class UserService : IUserService
+    public class Service<T> : IService<T> where T : EntityBase
     {
         private readonly ILiteRepository _repository;
 
-        public UserService(IRepository<ILiteRepository> repository) 
+        public Service(IRepository<ILiteRepository> repository) 
         { 
             _repository = repository.Repository;
         }
 
         public bool Delete(int id)
         {
-            var delete = _repository.Delete<User>(id);
+            var delete = _repository.Delete<T>(id);
             return delete;
         }
 
-        public IEnumerable<User> FindAll()
+        public IEnumerable<T> FindAll()
         {
-            var query = _repository.Query<User>();
+            var query = _repository.Query<T>();
             return query.ToEnumerable();
         }
 
-        public User FindOne(int id)
+        public T FindOne(int id)
         {
-            var query = _repository.Query<User>()
+            var query = _repository.Query<T>()
                 .Where(x => x.Id == id)
                 .FirstOrDefault();
 
             return query;
         }
 
-        public void Insert(User user)
+        public void Insert(T entity)
         {
-            _repository.Insert<User>(user);
+            _repository.Insert<T>(entity);
         }
 
-        public bool Update(User user)
+        public bool Update(T entity)
         {
-            var update = _repository.Update<User>(user);
+            var update = _repository.Update<T>(entity);
             return update;
         }
     }

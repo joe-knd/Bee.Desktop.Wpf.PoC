@@ -1,6 +1,7 @@
 ﻿using Bee.Data.Abstractions;
 using Bee.Data.LiteDb;
 using Bee.Data.Service;
+using Bee.Data.Service.Extensions;
 using Bee.Data.Service.Models;
 using Bee.Desktop.Wpf.PoC.Messenger;
 using Bee.Desktop.Wpf.PoC.Settings;
@@ -48,8 +49,10 @@ namespace Bee.Desktop.Wpf.PoC
             services.Configure<AppSettings>(Configuration?.GetSection(nameof(AppSettings)));
             services.Configure<LiteDbOptions>(Configuration?.GetSection(nameof(LiteDbOptions)));
 
-            services.AddSingleton<IRepository<ILiteRepository>, LiteDbRepository>();
-            services.AddSingleton<IService<User>, Service<User>>();
+            //services.AddSingleton<IRepository<ILiteRepository>, LiteDbRepository>();
+            //services.AddSingleton<IService<User>, Service<User>>();
+            services.AddRepository();
+            services.AddDataService<User>();
 
             services.AddSingleton<BaseViewModel, AuthorizeViewModel>();
             services.AddSingleton<BaseViewModel, ServerViewModel>();

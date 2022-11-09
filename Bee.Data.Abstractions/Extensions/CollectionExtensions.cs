@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bee.Desktop.Wpf.PoC.Extensions
+namespace Bee.Data.Abstractions.Extensions
 {
     public static class CollectionExtensions
     {

@@ -1,7 +1,7 @@
 ﻿using Bee.Data.Abstractions;
+using Bee.Data.Abstractions.Extensions;
 using Bee.Data.Service;
 using Bee.Data.Service.Models;
-using Bee.Desktop.Wpf.PoC.Extensions;
 using Bee.Desktop.Wpf.PoC.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;

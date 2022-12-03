@@ -22,6 +22,7 @@
                 <iconPacks:PackIconModern Width="22"
                                   Height="22"
                                   Kind="SocialGithubOctocat" />
+                <!--<Image Source=""-->
             </Button>
         </mah:WindowCommands>
     </mah:MetroWindow.LeftWindowCommands>

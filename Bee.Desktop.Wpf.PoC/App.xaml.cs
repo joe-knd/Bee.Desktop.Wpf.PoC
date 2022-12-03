@@ -54,6 +54,8 @@ namespace Bee.Desktop.Wpf.PoC
             services.AddRepository();
             services.AddDataService<User>();
 
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddSingleton<BaseViewModel, AuthorizeViewModel>();
             services.AddSingleton<BaseViewModel, ServerViewModel>();
             services.AddSingleton<BaseViewModel, UserListViewModel>();

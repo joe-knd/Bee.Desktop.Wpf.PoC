@@ -1,4 +1,5 @@
-﻿using Bee.Data.Abstractions;
+﻿using AutoMapper;
+using Bee.Data.Abstractions;
 using Bee.Data.Abstractions.Extensions;
 using Bee.Data.Service;
 using Bee.Data.Service.Models;
@@ -23,11 +24,15 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
         [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
         public ObservableCollection<UserModel>? users;
 
+        private readonly IService<User>? _userService;
+        private readonly IMapper? _mapper;
+
         public UserListViewModel()
         {
-            var userService = App.Current.ServiceProvider?.GetService(typeof(IService<User>)) as IService<User>;
+            _userService = App.Current.ServiceProvider?.GetService(typeof(IService<User>)) as IService<User>;
+            _mapper = App.Current.ServiceProvider?.GetService(typeof(IMapper)) as IMapper;
 
-            if (userService != null) 
+            if (_userService != null) 
             {
                 //userService?.Insert(new User { Name = "Jose Valencia", Email = "joe.k.nd@outlook.com", EmailConfirmed = "joe.k.nd@outlook.com", Password = string.Empty, PasswordConfirmed = string.Empty });
                 //userService?.Insert(new User { Name = "Gabe Valencia", Email = "joe-k.nd@outlook.com", EmailConfirmed = "joe-k.nd@outlook.com", Password = string.Empty, PasswordConfirmed = string.Empty });
@@ -35,7 +40,22 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
                 //userService?.Insert(new User { Name = "Gabriel", Email = "mxsmax@gmail.com", EmailConfirmed = "mxsmax@gmail.com", Password = string.Empty, PasswordConfirmed = string.Empty });
                 //userService?.Insert(new User { Name = "Fake Account", Email = "isfake@outlook.com", EmailConfirmed = "isfake@gmail.com", Password = string.Empty, PasswordConfirmed = string.Empty });
 
-                Users = userService.FindAll().Select(x => new UserModel { EmailAddress = x.Email, Name = x.Name, IsSelected = false }).ToList().ToObservableCollection();
+                //Users = _userService.FindAll().Select(x => new UserModel { EmailAddress = x.Email, Name = x.Name, IsSelected = false }).ToList().ToObservableCollection();
+                var usrs = _userService.FindAll().ToList();
+
+                if (usrs.Count() != 0)
+                {
+                    Users = _mapper?.Map<List<UserModel>>(usrs).ToObservableCollection();
+                }
+                else
+                {
+                    //fill new data
+                    _userService?.Insert(new User { Name = "Jose Valencia", EmailAddress = "joe.k.nd@outlook.com", EmailConfirmed = "joe.k.nd@outlook.com", Password = string.Empty, PasswordConfirmed = string.Empty });
+                    _userService?.Insert(new User { Name = "Gabe Valencia", EmailAddress = "joe-k.nd@outlook.com", EmailConfirmed = "joe-k.nd@outlook.com", Password = string.Empty, PasswordConfirmed = string.Empty });
+                    _userService?.Insert(new User { Name = "Javier Rivera", EmailAddress = "ingjrz@gmail.com", EmailConfirmed = "ingjrz@gmail.com", Password = string.Empty, PasswordConfirmed = string.Empty });
+                    _userService?.Insert(new User { Name = "Gabriel", EmailAddress = "mxsmax@gmail.com", EmailConfirmed = "mxsmax@gmail.com", Password = string.Empty, PasswordConfirmed = string.Empty });
+                    _userService?.Insert(new User { Name = "Fake Account", EmailAddress = "isfake@outlook.com", EmailConfirmed = "isfake@gmail.com", Password = string.Empty, PasswordConfirmed = string.Empty });
+                }
             }
             //else
             //{
@@ -64,14 +84,13 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
         public void Save()
         {
             var users = Users?.Where(x => x.IsSelected == true).ToList();
-            MessageBox.Show($"Saved: {users.Count()} user(s) selected");
+            MessageBox.Show($"Saved: {users?.Count()} user(s) selected");
         }
 
         public bool CanSave()
         {
-            var isValid = Users.Any(x => x.IsSelected == true);
+            return Users?.Any(x => x.IsSelected == true)?? false;
 
-            return isValid;
         }
     }
 }

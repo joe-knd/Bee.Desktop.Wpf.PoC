@@ -11,6 +11,9 @@ namespace Bee.Desktop.Wpf.PoC.Models
 {
     public partial class UserModel : ObservableValidator
     {
+        [ObservableProperty]
+        private int id;
+
         [Required]
         [EmailAddress]
         [ObservableProperty]

@@ -7,11 +7,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bee.Desktop.Wpf.PoC"
         xmlns:viewModels="clr-namespace:Bee.Desktop.Wpf.PoC.Messenger"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
         GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
         WindowStartupLocation="CenterScreen"
         Title="Bee Center" Height="450" Width="800">
+
     <mah:MetroWindow.DataContext>
         <viewModels:MainViewModel/>
     </mah:MetroWindow.DataContext>
@@ -53,11 +55,14 @@
             <GradientStop Color="AliceBlue" Offset="1.5" />
         </LinearGradientBrush>
     </Window.Background>-->
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <ContentControl Content="{Binding CurrentViewModel}" />
-    </Grid>
+
+    <md:DialogHost Identifier="RootDialogManager">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ContentControl Content="{Binding CurrentViewModel}" />
+        </Grid>
+    </md:DialogHost>
 </mah:MetroWindow>

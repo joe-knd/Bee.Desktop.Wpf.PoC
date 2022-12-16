@@ -6,6 +6,7 @@ using Bee.Data.Service.Models;
 using Bee.Desktop.Wpf.PoC.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,6 +21,8 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
 {
     public partial class UserListViewModel : BaseViewModel
     {
+        private const string DialogIdentifier = "RootDialogManager";
+
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
         public ObservableCollection<UserModel>? users;
@@ -32,7 +35,12 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
             _userService = App.Current.ServiceProvider?.GetService(typeof(IService<User>)) as IService<User>;
             _mapper = App.Current.ServiceProvider?.GetService(typeof(IMapper)) as IMapper;
 
-            if (_userService != null) 
+            FillUserList();
+        }
+
+        private void FillUserList()
+        {
+            if (_userService != null)
             {
                 //userService?.Insert(new User { Name = "Jose Valencia", Email = "joe.k.nd@outlook.com", EmailConfirmed = "joe.k.nd@outlook.com", Password = string.Empty, PasswordConfirmed = string.Empty });
                 //userService?.Insert(new User { Name = "Gabe Valencia", Email = "joe-k.nd@outlook.com", EmailConfirmed = "joe-k.nd@outlook.com", Password = string.Empty, PasswordConfirmed = string.Empty });
@@ -46,15 +54,6 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
                 if (usrs.Count() != 0)
                 {
                     Users = _mapper?.Map<List<UserModel>>(usrs).ToObservableCollection();
-                }
-                else
-                {
-                    //fill new data
-                    _userService?.Insert(new User { Name = "Jose Valencia", EmailAddress = "joe.k.nd@outlook.com", EmailConfirmed = "joe.k.nd@outlook.com", Password = string.Empty, PasswordConfirmed = string.Empty });
-                    _userService?.Insert(new User { Name = "Gabe Valencia", EmailAddress = "joe-k.nd@outlook.com", EmailConfirmed = "joe-k.nd@outlook.com", Password = string.Empty, PasswordConfirmed = string.Empty });
-                    _userService?.Insert(new User { Name = "Javier Rivera", EmailAddress = "ingjrz@gmail.com", EmailConfirmed = "ingjrz@gmail.com", Password = string.Empty, PasswordConfirmed = string.Empty });
-                    _userService?.Insert(new User { Name = "Gabriel", EmailAddress = "mxsmax@gmail.com", EmailConfirmed = "mxsmax@gmail.com", Password = string.Empty, PasswordConfirmed = string.Empty });
-                    _userService?.Insert(new User { Name = "Fake Account", EmailAddress = "isfake@outlook.com", EmailConfirmed = "isfake@gmail.com", Password = string.Empty, PasswordConfirmed = string.Empty });
                 }
             }
             //else
@@ -91,6 +90,33 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
         {
             return Users?.Any(x => x.IsSelected == true)?? false;
 
+        }
+
+        [RelayCommand]
+        public async Task AddUser()
+        {
+            var addUserViewModel = App.Current.ServiceProvider?.GetRequiredService<AddUserViewModel>();
+            if (addUserViewModel == null)
+            {
+                MessageBox.Show("Error adding new user", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            object dialogResult = await MaterialDesignThemes.Wpf.DialogHost.Show(addUserViewModel, DialogIdentifier);
+            if (dialogResult is bool boolResult && boolResult)
+            {
+                _userService?.Insert(new User
+                {
+                    EmailAddress = addUserViewModel.EmailAddress,
+                    EmailConfirmed = addUserViewModel.EmailAddress,
+                    Name = addUserViewModel.Name,
+                    Password = string.Empty,
+                    PasswordConfirmed = string.Empty
+                });
+
+                FillUserList();
+            }
+            
         }
     }
 }

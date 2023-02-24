@@ -15,4 +15,7 @@
     <DataTemplate DataType="{x:Type ViewModels:UserListViewModel}">
         <Views:UserList />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type ViewModels:ScrollViewModel}">
+        <Views:Scroll />
+    </DataTemplate>
 </ResourceDictionary>

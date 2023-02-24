@@ -59,6 +59,8 @@ namespace Bee.Desktop.Wpf.PoC
             services.AddSingleton<BaseViewModel, AuthorizeViewModel>();
             services.AddSingleton<BaseViewModel, ServerViewModel>();
             services.AddSingleton<BaseViewModel, UserListViewModel>();
+            services.AddSingleton<BaseViewModel, ScrollViewModel>();
+
             services.AddScoped(typeof(AddUserViewModel));
             services.AddTransient(typeof(MainWindow));
         }

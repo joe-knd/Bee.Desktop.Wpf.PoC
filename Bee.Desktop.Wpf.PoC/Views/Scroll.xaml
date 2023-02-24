@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="Bee.Desktop.Wpf.PoC.Views.Scroll"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Bee.Desktop.Wpf.PoC"
+      xmlns:viewModels="clr-namespace:Bee.Desktop.Wpf.PoC.Messenger"
+      xmlns:system="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="Users" Grid.Column="1" Grid.Row="1">
+            <Grid>
+                <Grid.Background>
+                    <SolidColorBrush Color="White" Opacity=".5"/>
+                </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="590"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Border BorderThickness="1" Padding="2" BorderBrush="LightGray" CornerRadius="5" Grid.Column="1" Grid.Row="1">
+                    <ScrollViewer PanningMode="VerticalOnly" Background="White" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center" Height="169" VerticalAlignment="Center" Width="586">
+                        <StackPanel Orientation="Vertical" Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <TextBlock FontSize="24">This is a texblock just for testing scroll</TextBlock>
+                            <TextBlock FontSize="24">This is a texblock just for testing scroll 1</TextBlock>
+                            <TextBlock FontSize="24">This is a texblock just for testing scroll 2</TextBlock>
+                            <TextBlock FontSize="24">This is a texblock just for testing scroll 3</TextBlock>
+                            <TextBlock FontSize="24">This is a texblock just for testing scroll 4</TextBlock>
+                            <TextBlock FontSize="24">This is a texblock just for testing scroll 5</TextBlock>
+                            <TextBlock FontSize="24">This is a texblock just for testing scroll 6</TextBlock>
+                            <TextBlock FontSize="24">This is a texblock just for testing scroll 7</TextBlock>
+                            <TextBlock FontSize="24">This is a texblock just for testing scroll 8</TextBlock>
+                            <TextBlock FontSize="24">This is a texblock just for testing scroll 9</TextBlock>
+                            <TextBlock FontSize="24">This is a texblock just for testing scroll 10</TextBlock>
+                            <TextBlock FontSize="24">This is a texblock just for testing scroll 11</TextBlock>
+                            <TextBlock FontSize="24">This is a texblock just for testing scroll 12</TextBlock>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+                <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Stretch" >
+                    <Button Command="{Binding UserListCommand}" VerticalAlignment="Center" Content="User List" Height="32" HorizontalAlignment="Left" Width="100" Margin="0,0,0,5" />
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+    </Grid>
+    <!--</md:DialogHost>-->
+</UserControl>
+

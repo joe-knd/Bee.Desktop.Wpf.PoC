@@ -14,8 +14,8 @@ namespace Bee.Data.Service
     {
         private readonly ILiteRepository _repository;
 
-        public Service(IRepository<ILiteRepository> repository) 
-        { 
+        public Service(IRepository<ILiteRepository> repository)
+        {
             _repository = repository.Repository;
         }
 

@@ -73,7 +73,8 @@
                     <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Stretch">
                         <Button Command="{Binding AddUserCommand}" VerticalAlignment="Center" Content="Add User" Height="32" HorizontalAlignment="Left" Width="100" Margin="0,0,0,5" />
                         <Button Command="{Binding SaveCommand}" VerticalAlignment="Center" Content="Save" Height="32" HorizontalAlignment="Left" Width="100" Margin="5,0,0,5" />
-                    </StackPanel>
+                    <Button Command="{Binding ShowScrollCommand}" VerticalAlignment="Center" Content="Test Scroll" Height="32" HorizontalAlignment="Right" Width="100" Margin="5,0,0,5" />
+                </StackPanel>
                 </Grid>
             </GroupBox>
         </Grid>

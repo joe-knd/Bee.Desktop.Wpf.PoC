@@ -115,8 +115,23 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
                 });
 
                 FillUserList();
-            }
-            
+            }            
+        }
+
+        [RelayCommand]
+        public Task ShowScroll()
+        {
+            NavigationSenderProvider.SendNavigationChangeMessage(new NavigationModel
+            {
+                NextCommand = new NavigationCommandModel
+                {
+                    CanExecute = true,
+                    IsHidden = false,
+                    ViewModel = typeof(ScrollViewModel)
+                }
+            });
+
+            return Task.CompletedTask;
         }
     }
 }

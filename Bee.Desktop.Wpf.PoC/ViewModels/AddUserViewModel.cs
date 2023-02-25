@@ -6,6 +6,7 @@ using Bee.Data.Service.Models;
 using Bee.Desktop.Wpf.PoC.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +19,38 @@ using System.Windows;
 
 namespace Bee.Desktop.Wpf.PoC.Messenger
 {
-    public partial class AddUserViewModel : UserModel
-    { }
+    public partial class AddUserViewModel : ObservableValidator
+    {
+        private const string DialogIdentifier = "RootDialogManager";
+
+        [Required]
+        [EmailAddress]
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(SaveUserCommand))]
+        [NotifyDataErrorInfo]
+        private string? emailAddress;
+
+        [Required]
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(SaveUserCommand))]
+        [NotifyDataErrorInfo]
+        private string? name;
+
+        public AddUserViewModel()
+        {
+            ValidateAllProperties();
+        }
+
+        [RelayCommand(CanExecute = nameof(CanSaveUser))]
+        public void SaveUser()
+        {
+            var dialog = DialogHost.GetDialogSession(DialogIdentifier);
+            dialog?.Close(true);
+        }
+
+        public bool CanSaveUser()
+        {
+            return !HasErrors;
+        }
+    }
 }

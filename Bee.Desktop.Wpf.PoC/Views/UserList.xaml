@@ -17,67 +17,67 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <md:DialogHost Identifier="UsersDialog">-->
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="50"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition/>
-                <RowDefinition Height="50"/>
-            </Grid.RowDefinitions>
-            <GroupBox Header="Users" Grid.Column="1" Grid.Row="1">
-                <Grid>
-                    <Grid.Background>
-                        <SolidColorBrush Color="White" Opacity=".5"/>
-                    </Grid.Background>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="590"/>
-                        <ColumnDefinition Width="50"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="50"/>
-                    </Grid.RowDefinitions>
-                    <Border BorderThickness="1" Padding="2" BorderBrush="LightGray" CornerRadius="5" Grid.Column="1" Grid.Row="1">
-                        <ListBox ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Extended">
-                            <ListBox.ItemContainerStyle>
-                                <Style TargetType="ListBoxItem">
-                                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
-                                </Style>
-                            </ListBox.ItemContainerStyle>
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <CheckBox 
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="Users" Grid.Column="1" Grid.Row="1">
+            <Grid>
+                <Grid.Background>
+                    <SolidColorBrush Color="White" Opacity=".5"/>
+                </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="590"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Border BorderThickness="1" Padding="2" BorderBrush="LightGray" CornerRadius="5" Grid.Column="1" Grid.Row="1">
+                    <ListBox ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Extended">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox 
                                     IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                     Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListBox}, Path=DataContext.UserSelectedCommand}" 
                                     Margin="2">
-                                        <TextBlock>
-                                            <TextBlock.Text>
-                                                <MultiBinding StringFormat="{}{0} &lt;{1}&gt;" >
-                                                    <Binding Path="Name" />
-                                                    <Binding Path="EmailAddress" />
-                                                </MultiBinding>
-                                            </TextBlock.Text>
-                                        </TextBlock>
-                                    </CheckBox>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </Border>
-                    <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Stretch">
-                        <Button Command="{Binding AddUserCommand}" VerticalAlignment="Center" Content="Add User" Height="32" HorizontalAlignment="Left" Width="100" Margin="0,0,0,5" />
-                        <Button Command="{Binding SaveCommand}" VerticalAlignment="Center" Content="Save" Height="32" HorizontalAlignment="Left" Width="100" Margin="5,0,0,5" />
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0} &lt;{1}&gt;" >
+                                                <Binding Path="Name" />
+                                                <Binding Path="EmailAddress" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </CheckBox>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Border>
+                <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <Button Command="{Binding AddUserCommand}" VerticalAlignment="Center" Content="Add User" Height="32" HorizontalAlignment="Left" Width="100" Margin="0,0,0,5" />
+                    <Button Command="{Binding SaveCommand}" VerticalAlignment="Center" Content="Save" Height="32" HorizontalAlignment="Left" Width="100" Margin="5,0,0,5" />
                     <Button Command="{Binding ShowScrollCommand}" VerticalAlignment="Center" Content="Test Scroll" Height="32" HorizontalAlignment="Right" Width="100" Margin="5,0,0,5" />
                 </StackPanel>
-                </Grid>
-            </GroupBox>
-        </Grid>
+            </Grid>
+        </GroupBox>
+    </Grid>
     <!--</md:DialogHost>-->
 </UserControl>
 

@@ -2,7 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:Local="clr-namespace:Bee.Desktop.Wpf.PoC"
                     xmlns:ViewModels="clr-namespace:Bee.Desktop.Wpf.PoC.Messenger"
-                    xmlns:Views="clr-namespace:Bee.Desktop.Wpf.PoC.Views">
+                    xmlns:Views="clr-namespace:Bee.Desktop.Wpf.PoC.Views"
+                    xmlns:Dialogs="clr-namespace:Bee.Desktop.Wpf.PoC.Dialogs"
+                    >
     <DataTemplate DataType="{x:Type ViewModels:AuthorizeViewModel}">
         <Views:Authorize />
     </DataTemplate>
@@ -17,5 +19,8 @@
     </DataTemplate>
     <DataTemplate DataType="{x:Type ViewModels:ScrollViewModel}">
         <Views:Scroll />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type ViewModels:AddUserViewModel}">
+        <Dialogs:AddUserDialog />
     </DataTemplate>
 </ResourceDictionary>

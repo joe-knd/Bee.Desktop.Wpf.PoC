@@ -102,7 +102,7 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
                 return;
             }
 
-            object dialogResult = await MaterialDesignThemes.Wpf.DialogHost.Show(addUserViewModel, DialogIdentifier);
+            object? dialogResult = await MaterialDesignThemes.Wpf.DialogHost.Show(addUserViewModel, DialogIdentifier);
             if (dialogResult is bool boolResult && boolResult)
             {
                 _userService?.Insert(new User

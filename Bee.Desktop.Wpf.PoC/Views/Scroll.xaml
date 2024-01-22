@@ -39,19 +39,19 @@
                 <Border BorderThickness="1" Padding="2" BorderBrush="LightGray" CornerRadius="5" Grid.Column="1" Grid.Row="1">
                     <ScrollViewer PanningMode="VerticalOnly" Background="White" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center" Height="169" VerticalAlignment="Center" Width="586">
                         <StackPanel Orientation="Vertical" Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                            <TextBlock FontSize="24">This is a texblock just for testing scroll</TextBlock>
-                            <TextBlock FontSize="24">This is a texblock just for testing scroll 1</TextBlock>
-                            <TextBlock FontSize="24">This is a texblock just for testing scroll 2</TextBlock>
-                            <TextBlock FontSize="24">This is a texblock just for testing scroll 3</TextBlock>
-                            <TextBlock FontSize="24">This is a texblock just for testing scroll 4</TextBlock>
-                            <TextBlock FontSize="24">This is a texblock just for testing scroll 5</TextBlock>
-                            <TextBlock FontSize="24">This is a texblock just for testing scroll 6</TextBlock>
-                            <TextBlock FontSize="24">This is a texblock just for testing scroll 7</TextBlock>
-                            <TextBlock FontSize="24">This is a texblock just for testing scroll 8</TextBlock>
-                            <TextBlock FontSize="24">This is a texblock just for testing scroll 9</TextBlock>
-                            <TextBlock FontSize="24">This is a texblock just for testing scroll 10</TextBlock>
-                            <TextBlock FontSize="24">This is a texblock just for testing scroll 11</TextBlock>
-                            <TextBlock FontSize="24">This is a texblock just for testing scroll 12</TextBlock>
+                            <TextBlock Foreground="Black" FontSize="24">This is a texblock just for testing scroll</TextBlock>
+                            <TextBlock Foreground="Black" FontSize="24">This is a texblock just for testing scroll 1</TextBlock>
+                            <TextBlock Foreground="Black" FontSize="24">This is a texblock just for testing scroll 2</TextBlock>
+                            <TextBlock Foreground="Black" FontSize="24">This is a texblock just for testing scroll 3</TextBlock>
+                            <TextBlock Foreground="Black" FontSize="24">This is a texblock just for testing scroll 4</TextBlock>
+                            <TextBlock Foreground="Black" FontSize="24">This is a texblock just for testing scroll 5</TextBlock>
+                            <TextBlock Foreground="Black" FontSize="24">This is a texblock just for testing scroll 6</TextBlock>
+                            <TextBlock Foreground="Black" FontSize="24">This is a texblock just for testing scroll 7</TextBlock>
+                            <TextBlock Foreground="Black" FontSize="24">This is a texblock just for testing scroll 8</TextBlock>
+                            <TextBlock Foreground="Black" FontSize="24">This is a texblock just for testing scroll 9</TextBlock>
+                            <TextBlock Foreground="Black" FontSize="24">This is a texblock just for testing scroll 10</TextBlock>
+                            <TextBlock Foreground="Black" FontSize="24">This is a texblock just for testing scroll 11</TextBlock>
+                            <TextBlock Foreground="Black" FontSize="24">This is a texblock just for testing scroll 12</TextBlock>
                         </StackPanel>
                     </ScrollViewer>
                 </Border>

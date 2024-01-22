@@ -36,18 +36,18 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
         {
             Themes ??= new List<ThemeColor>
                 {
-                    new ThemeColor{ Name = "Light.Blue"},
-                    new ThemeColor{ Name = "Light.Red"},
-                    new ThemeColor{ Name = "Light.Crimson"},
-                    new ThemeColor{ Name = "Light.Teal"},
-                    new ThemeColor{ Name = "Light.Steel"},
-                    new ThemeColor{ Name = "Light.Brown"},
-                    new ThemeColor{ Name = "Dark.Blue"},
-                    new ThemeColor{ Name = "Dark.Red"},
-                    new ThemeColor{ Name = "Dark.Crimson"},
-                    new ThemeColor{ Name = "Dark.Teal"},
-                    new ThemeColor{ Name = "Dark.Steel"},
-                    new ThemeColor{ Name = "Dark.Brown"},
+                    new() { Name = "Light.Blue"},
+                    new() { Name = "Light.Red"},
+                    new() { Name = "Light.Crimson"},
+                    new() { Name = "Light.Teal"},
+                    new() { Name = "Light.Steel" },
+                    new() { Name = "Light.Brown"},
+                    new() { Name = "Dark.Blue"},
+                    new() { Name = "Dark.Red"},
+                    new() { Name = "Dark.Crimson"},
+                    new() { Name = "Dark.Teal" },
+                    new() { Name = "Dark.Steel"},
+                    new() { Name = "Dark.Brown"},
                 };
             
             CurrentViewModel = new AuthorizeViewModel();
@@ -83,7 +83,8 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
                 //        break;
                 //}
                 var viewModelsList = App.Current.ServiceProvider.GetServices(typeof(BaseViewModel));
-                NextViewModel = (BaseViewModel)viewModelsList.FirstOrDefault(vm => vm.GetType().Equals(m.Value.NextCommand.ViewModel), typeof(AuthorizeViewModel));
+                NextViewModel = (BaseViewModel)viewModelsList.FirstOrDefault(vm => 
+                    vm.GetType().Equals(m.Value.NextCommand.ViewModel), typeof(AuthorizeViewModel));
 
                 NavigateNextCommand.NotifyCanExecuteChanged();
                 NavigateNext();

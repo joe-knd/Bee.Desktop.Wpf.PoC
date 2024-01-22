@@ -82,13 +82,13 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
         [RelayCommand(CanExecute = nameof(CanSave))]
         public void Save()
         {
-            var users = Users?.Where(x => x.IsSelected == true).ToList();
+            var users = Users?.Where(x => x.IsSelected).ToList();
             MessageBox.Show($"Saved: {users?.Count()} user(s) selected");
         }
 
         public bool CanSave()
         {
-            return Users?.Any(x => x.IsSelected == true)?? false;
+            return Users?.Any(x => x.IsSelected)?? false;
 
         }
 

@@ -13,7 +13,7 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
         [NotifyCanExecuteChangedFor(nameof(ShowServerCommand))]
         [NotifyDataErrorInfo]
         [Required(ErrorMessage = "Email address is required")]
-        [EmailAddress(ErrorMessage = "The Email adress is not well formed")]
+        [EmailAddress(ErrorMessage = "The Email address is not well formed")]
         private string? emailAddress = string.Empty;
 
         public AuthorizeViewModel()

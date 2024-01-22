@@ -13,7 +13,7 @@ namespace Bee.Desktop.Wpf.PoC.Messenger
         protected bool canNavigateNext;
         protected BaseViewModel? NextViewModel;
 
-        protected NavigationSender NavigationSenderProvider { get; } = new NavigationSender();
+        protected NavigationSender NavigationSenderProvider { get; } = new();
         public bool CanNavigateNext()
         {
             return canNavigateNext;
